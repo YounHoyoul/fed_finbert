@@ -1,0 +1,13 @@
+wordcloud 
+transformers==2.11.0 
+spacy
+pysentiment2
+tqdm
+summa
+torch==1.6.0
+pytorch-pretrained-bert==0.6.2
+tensorflow
+ktrain
+eli5
+lime
+textblob
