@@ -41,7 +41,7 @@ class ExplainPredict:
         letters = string.ascii_lowercase
         return ''.join(random.choice(letters) for i in range(length))
 
-    def predict(self, s_doc):
+    def predict(self, s_doc, is_upload=True):
         class_names = ['lower', 'maintain', 'raise']
         c_tf = make_pipeline(self.tfidf, self.loaded_xgb)
         explainer_tf = LimeTextExplainer(class_names=class_names)
@@ -51,8 +51,9 @@ class ExplainPredict:
         filename = self.get_random_string(10) + '.html'
         lime = exp.save_to_file("./temp/"+ filename)
 
-        # upload a file
-        self.upload(filename)
+        if is_upload :
+            # upload a file
+            self.upload(filename)
 
         # return filename
         return filename
