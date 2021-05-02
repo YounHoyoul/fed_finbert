@@ -4,11 +4,11 @@ from flask_cors import CORS, cross_origin
 import torch
 import json
 import numpy
-from modules.SentimentPredict import SentimentPredict
-from modules.WordCloudPredict import WordCloudPredict
-from modules.SummarizationPredict import SummarizationPredict
-from modules.FinBERTPredict import PredictModel, BertClassification
-from modules.ExplainPredict import ExplainPredict
+from fednlp.SentimentPredict import SentimentPredict
+from fednlp.WordCloudPredict import WordCloudPredict
+from fednlp.SummarizationPredict import SummarizationPredict
+from fednlp.FinBERTPredict import PredictModel, BertClassification
+from fednlp.ExplainPredict import ExplainPredict
 
 app = Flask(__name__)
 cors = CORS(app)
