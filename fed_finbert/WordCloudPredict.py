@@ -6,8 +6,9 @@ import string
 import random
 
 class WordCloudPredict:
-    def __init__(self):
+    def __init__(self, temp_path):
         self.wordcloud = WordCloud(background_color="white", max_words=1000)
+        self.temp_path = temp_path
 
     def get_random_string(self, length):
         letters = string.ascii_lowercase
@@ -25,7 +26,7 @@ class WordCloudPredict:
         plt.tight_layout(pad = 0) 
         plt.show()
 
-        temp_file_name = "/tmp/" + self.get_random_string(10) + '.png'
+        temp_file_name = self.temp_path + self.get_random_string(10) + '.png'
 
         fig.savefig(temp_file_name)
 

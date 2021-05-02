@@ -16,15 +16,18 @@ cors = CORS(app)
 VOCAB = 'finance-uncased'
 VOCAB_PATH = '/app/output/FinVocab-Uncased.txt'
 WEIGHT_PATH = '/app/output/FinBERT-FinVocab-Uncased.tar.gz'
+XGB_PATH= '/app/output/ffr_xgb.pkl'
+TFIDF_PATH = '/app/output/tfidf.pkl'
+TEMP_PATH = '/app/temp/'
 OUTPUT_PATH = '/app/output'
 BATCH_SIZE = 8
 NUM_LABELS = 3
 
 sentiment = SentimentPredict()
-wordcloud = WordCloudPredict()
+wordcloud = WordCloudPredict(temp_path=TEMP_PATH)
 summarization = SummarizationPredict()
 prediction_model = BertClassification(weight_path=WEIGHT_PATH, num_labels=NUM_LABELS, vocab=VOCAB)
-explain = ExplainPredict()
+explain = ExplainPredict(xgb_path=XGB_PATH, tfidf_path=TFIDF_PATH, temp_path=TEMP_PATH)
 
 def convert(o):
     if isinstance(o, numpy.int64): return int(o)  

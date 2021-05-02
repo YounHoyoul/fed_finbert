@@ -22,9 +22,10 @@ from bs4 import BeautifulSoup
 import boto3
 
 class ExplainPredict:
-    def __init__(self):
-        self.loaded_xgb = pickle.load(open("./output/ffr_xgb.pkl", "rb"))
-        self.tfidf = pickle.load(open("./output/tfidf.pkl", "rb"))
+    def __init__(self, xgb_path, tfidf_path, temp_path):
+        self.loaded_xgb = pickle.load(open(xgb_path, "rb"))
+        self.tfidf = pickle.load(open(tfidf_path, "rb"))
+        self.temp_path = temp_path
 
     def clean_sentence(self, sentence):
         stopword_add_list = ['pdf','presentation','slide','slides','q','myplayer','download','â','participant','and','the','of']
@@ -49,7 +50,7 @@ class ExplainPredict:
         
         # generate a file name
         filename = self.get_random_string(10) + '.html'
-        lime = exp.save_to_file("./temp/"+ filename)
+        lime = exp.save_to_file(self.temp_path + filename)
 
         if is_upload :
             # upload a file
@@ -65,7 +66,7 @@ class ExplainPredict:
     def upload(self, filename):
         s3 = boto3.resource("s3")
 
-        with open("./temp/"+ filename) as inf:
+        with open(self.temp_path + filename) as inf:
             data = inf.read()
             soup = BeautifulSoup(data, features="html.parser")
 
@@ -75,7 +76,7 @@ class ExplainPredict:
         soup.head.append(BeautifulSoup("<script src=\"https://finviznlp-uploads.s3.us-east-2.amazonaws.com/static/iframe.js\"></script>", features="html.parser"))
         soup.head.append(BeautifulSoup("<link href=\"https://finviznlp-uploads.s3.us-east-2.amazonaws.com/static/iframe.css\" rel=\"stylesheet\"/>", features="html.parser"))
 
-        tmp = "./temp/"+ filename+".pp"
+        tmp = self.temp_path+ filename+".pp"
 
         with open(tmp, "w") as outf:
             outf.write(str(soup))
