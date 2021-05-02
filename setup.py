@@ -1,13 +1,13 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="FED_FinBert",
+    name="fed_finbert",
     version="0.1.0",
     author="Hoyoul Youn",
     author_email="yhy0215@gmail.com",
     url="https://github.com/YounHoyoul/fed_finbert.git",
     license="Apache",
-    packages=find_packages(),
+    packages=['fed_finbert'],
     install_requires=[
         'torch==1.6.0',
         'torchvision==0.7.0',
