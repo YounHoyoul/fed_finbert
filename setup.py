@@ -23,7 +23,7 @@ setup(
         'summa',
         'eli5',
         'lime',
-        'extblob'
+        'textblob'
     ]
 )
 
