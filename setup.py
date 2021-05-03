@@ -1,13 +1,13 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="nlp_fed",
+    name="fednlp",
     version="0.1.0",
     author="Hoyoul Youn",
     author_email="yhy0215@gmail.com",
     url="https://github.com/YounHoyoul/fed_nlp.git",
     license="Apache",
-    packages=['nlp_fed'],
+    packages=['fednlp'],
     install_requires=[
         'torch==1.6.0',
         'torchvision==0.7.0',
