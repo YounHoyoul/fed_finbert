@@ -5,7 +5,7 @@ setup(
     version="0.1.0",
     author="Hoyoul Youn",
     author_email="yhy0215@gmail.com",
-    url="https://github.com/YounHoyoul/fed_nlp.git",
+    url="https://github.com/YounHoyoul/fed_finbert.git",
     license="Apache",
     packages=['fed_nlp'],
     install_requires=[
